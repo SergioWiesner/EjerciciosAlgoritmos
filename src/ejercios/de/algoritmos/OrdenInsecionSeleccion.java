@@ -1,42 +1,121 @@
 package ejercios.de.algoritmos;
 
-import sun.tools.jar.Main;
+import java.util.Scanner;
 
-/**
- *
- * @author PC-47050
- */
 public class OrdenInsecionSeleccion {
 
-    public int u[] = new int[6];
-    public int v[] = new int[6];
+    public static int u[] = new int[6];
+    public static int v[] = new int[6];
 
     public OrdenInsecionSeleccion() {
-        int[] u = {1, 2, 3, 4, 5, 6};
-        int[] v = {6, 5, 4, 3, 2, 1};
     }
 
     public static int[] ordenanzaInsecion(int[] arreglo) {
-        int i = 2;
-        int x = arreglo[i];
-        int j = i - 1;
-        
-        while (j > 0 && x < arreglo[j]) {
-            arreglo[j + 1] = arreglo[j];
-            j--;
-            arreglo[j + 1] = x;
+        for (int i = 2; i < arreglo.length; i++) {
+            int x = arreglo[i];
+            int j = i - 1;
+            while (j > 0 && x < arreglo[j]) {
+                arreglo[j + 1] = arreglo[j];
+                j--;
+                arreglo[j + 1] = x;
+            }
         }
-        
         return arreglo;
     }
 
-    public static void ordenanzaSeleccion(int[] arreglo) {
-        int i = 1;
-        int minj = 1;
-        
+    public static int[] ordenanzaSeleccion(int[] arreglo) {
+        for (int i = 1; i < arreglo.length - 1; i++) {
+            int minj = i;
+            int minx = arreglo[i];
+            for (int j = i + 1; j < arreglo.length; j++) {
+                if (arreglo[i] < minx) {
+                    minj = i;
+                    minx = arreglo[i];
+                    arreglo[minj] = arreglo[i];
+                    arreglo[i] = minx;
+                }
+            }
+        }
+        return arreglo;
     }
-    
-    public static void main(String args[]){
+
+    public static void mostrarArray(int[] secencias) {
+        String cadena = "[";
+        for (int a = 0; a < secencias.length; a++) {
+            if (secencias.length >= a) {
+                cadena = cadena + String.valueOf(secencias[a]) + ", ";
+            } else {
+                cadena = cadena + String.valueOf(secencias[a]) + "]";
+            }
+        }
+        System.out.println(cadena + "]");
+    }
+
+    public static void main() {
+        int[] u = {1, 2, 3, 4, 5, 6};
+        int[] v = {6, 5, 4, 3, 2, 1};
+        int[] w = {1, 1, 1, 1, 1, 1};
+        int[] resultado;
+        long startTime;
         
+        System.out.println("1. Ordenanza por insecion.");
+        System.out.println("2. Ordenanza por seleccion.");
+        Scanner scan = new Scanner(System.in);
+        int opc = scan.nextInt();
+        switch (opc) {
+            case 1:
+                
+                System.out.println("ordenado ....");
+                OrdenInsecionSeleccion.mostrarArray(u);
+                startTime = System.currentTimeMillis();
+                resultado = OrdenInsecionSeleccion.ordenanzaInsecion(u);
+                System.out.println("Tiempo de ejecución -> "+String.valueOf(System.currentTimeMillis() - startTime));
+                OrdenInsecionSeleccion.mostrarArray(resultado);
+                
+                System.out.println("desordenado ....");
+                OrdenInsecionSeleccion.mostrarArray(v);
+                startTime = System.currentTimeMillis();
+                resultado = OrdenInsecionSeleccion.ordenanzaInsecion(v);
+                System.out.println("Tiempo de ejecución -> "+String.valueOf(System.currentTimeMillis() - startTime));
+                OrdenInsecionSeleccion.mostrarArray(resultado);              
+                
+                System.out.println("iguales ....");
+                OrdenInsecionSeleccion.mostrarArray(w);
+                startTime = System.currentTimeMillis();
+                resultado = OrdenInsecionSeleccion.ordenanzaInsecion(w);
+                System.out.println("Tiempo de ejecución -> "+String.valueOf(System.currentTimeMillis() - startTime));
+                OrdenInsecionSeleccion.mostrarArray(resultado);                
+                
+                main();
+                break;
+            case 2:
+                
+                System.out.println("ordenado ....");
+                OrdenInsecionSeleccion.mostrarArray(u);
+                startTime = System.currentTimeMillis();
+                resultado = OrdenInsecionSeleccion.ordenanzaSeleccion(u);
+                System.out.println("Tiempo de ejecución -> "+String.valueOf(System.currentTimeMillis() - startTime));
+                OrdenInsecionSeleccion.mostrarArray(resultado);
+                
+                System.out.println("desordenado ....");
+                OrdenInsecionSeleccion.mostrarArray(v);
+                startTime = System.currentTimeMillis();
+                resultado = OrdenInsecionSeleccion.ordenanzaSeleccion(v);
+                System.out.println("Tiempo de ejecución -> "+String.valueOf(System.currentTimeMillis() - startTime));
+                OrdenInsecionSeleccion.mostrarArray(resultado);
+                
+                System.out.println("iguales ....");
+                OrdenInsecionSeleccion.mostrarArray(w);
+                startTime = System.currentTimeMillis();
+                resultado = OrdenInsecionSeleccion.ordenanzaSeleccion(w);
+                System.out.println("Tiempo de ejecución -> "+String.valueOf(System.currentTimeMillis() - startTime));
+                OrdenInsecionSeleccion.mostrarArray(resultado);
+                             
+                main();
+                break;
+            default:
+                System.out.println("NO EXISTE ESTA OPCIÓN.");
+                break;
+        }
     }
 }
