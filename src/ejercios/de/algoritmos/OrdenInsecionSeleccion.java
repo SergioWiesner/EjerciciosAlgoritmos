@@ -89,23 +89,23 @@ public class OrdenInsecionSeleccion {
 
                 System.out.println("ordenado ....");
                 OrdenInsecionSeleccion.mostrarArray(u);
-                startTime = System.currentTimeMillis();
+                startTime = System.nanoTime();
                 resultado = OrdenInsecionSeleccion.ordenanzaInsecion(u);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 System.out.println("desordenado ....");
                 OrdenInsecionSeleccion.mostrarArray(v);
-                startTime = System.currentTimeMillis();
+                startTime = System.nanoTime();
                 resultado = OrdenInsecionSeleccion.ordenanzaInsecion(v);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 System.out.println("iguales ....");
                 OrdenInsecionSeleccion.mostrarArray(w);
-                startTime = System.currentTimeMillis();
+                startTime = System.nanoTime();
                 resultado = OrdenInsecionSeleccion.ordenanzaInsecion(w);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 main();
@@ -114,23 +114,23 @@ public class OrdenInsecionSeleccion {
 
                 System.out.println("ordenado ....");
                 OrdenInsecionSeleccion.mostrarArray(u);
-                startTime = System.currentTimeMillis();
+                startTime = System.nanoTime();
                 resultado = OrdenInsecionSeleccion.ordenanzaSeleccionInternet(u);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 System.out.println("desordenado ....");
                 OrdenInsecionSeleccion.mostrarArray(v);
-                startTime = System.currentTimeMillis();
+                startTime = System.nanoTime();
                 resultado = OrdenInsecionSeleccion.ordenanzaSeleccionInternet(v);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 System.out.println("iguales ....");
                 OrdenInsecionSeleccion.mostrarArray(w);
-                startTime = System.currentTimeMillis();
+                startTime = System.nanoTime();
                 resultado = OrdenInsecionSeleccion.ordenanzaSeleccionInternet(w);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 main();
