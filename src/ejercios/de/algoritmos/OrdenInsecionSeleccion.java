@@ -12,7 +12,7 @@ public class OrdenInsecionSeleccion {
 
     public static int[] ordenanzaInsecion(int[] arreglo) {
         int x, j;
-        for (int i = 2; i <= arreglo.length; i++) {
+        for (int i = 1; i < arreglo.length; i++) {
             x = arreglo[i];
             j = i - 1;
             while (j > 0 && x < arreglo[j]) {
@@ -23,7 +23,7 @@ public class OrdenInsecionSeleccion {
         }
         return arreglo;
     }
-
+    
     public static int[] ordenanzaSeleccion(int[] arreglo) {
         int minj, minx;
         for (int i = 1; i < arreglo.length - 1; i++) {
@@ -41,6 +41,26 @@ public class OrdenInsecionSeleccion {
         return arreglo;
     }
 
+    public static int[] ordenanzaSeleccionInternet(int[] arreglo){
+    int i, j, menor, pos, tmp;
+          for (i = 0; i < arreglo.length - 1; i++) { 
+                menor = arreglo[i]; 
+                pos = i; 
+                for (j = i + 1; j < arreglo.length; j++){ 
+                      if (arreglo[j] < menor) { 
+                          menor = arreglo[j]; 
+                          pos = j;
+                      }
+                }
+                if (pos != i){
+                    tmp = arreglo[i];
+                    arreglo[i] = arreglo[pos];
+                    arreglo[pos] = tmp;
+                }
+          }
+          return arreglo;
+    }
+    
     public static void mostrarArray(int[] secencias) {
         String cadena = "[";
         for (int a = 0; a < secencias.length; a++) {
@@ -95,21 +115,21 @@ public class OrdenInsecionSeleccion {
                 System.out.println("ordenado ....");
                 OrdenInsecionSeleccion.mostrarArray(u);
                 startTime = System.currentTimeMillis();
-                resultado = OrdenInsecionSeleccion.ordenanzaSeleccion(u);
+                resultado = OrdenInsecionSeleccion.ordenanzaSeleccionInternet(u);
                 System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 System.out.println("desordenado ....");
                 OrdenInsecionSeleccion.mostrarArray(v);
                 startTime = System.currentTimeMillis();
-                resultado = OrdenInsecionSeleccion.ordenanzaSeleccion(v);
+                resultado = OrdenInsecionSeleccion.ordenanzaSeleccionInternet(v);
                 System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 System.out.println("iguales ....");
                 OrdenInsecionSeleccion.mostrarArray(w);
                 startTime = System.currentTimeMillis();
-                resultado = OrdenInsecionSeleccion.ordenanzaSeleccion(w);
+                resultado = OrdenInsecionSeleccion.ordenanzaSeleccionInternet(w);
                 System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
