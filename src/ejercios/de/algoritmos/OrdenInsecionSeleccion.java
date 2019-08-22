@@ -13,16 +13,16 @@ public class OrdenInsecionSeleccion {
     public static int[] ordenanzaInsecion(int[] arreglo) {
         int x, j; // 2 pasos contastes 
         for (int i = 1; i < arreglo.length; i++) { //3 pasos
-            x = arreglo[i]; // 1 paso
+            x = arreglo[i]; // 2 paso
             j = i - 1; // 2 paso
-            while (j > 0 && x < arreglo[j]) { // 2 paso
-                arreglo[j + 1] = arreglo[j]; // 1 paso
+            while (j > 0 && x < arreglo[j]) { // 4 paso
+                arreglo[j + 1] = arreglo[j]; // 3 paso
                 j--; // 1 paso
-                arreglo[j + 1] = x; // 1 paso
+                arreglo[j + 1] = x; // 2 paso
             }
         }
-        
-        //ordenanzaInsecion = 2+3n+3n+n(2x+3x)
+       
+        //ordenanzaInsecion = 2+n(7+10(n-1))
         
         return arreglo;
     }
@@ -47,22 +47,22 @@ public class OrdenInsecionSeleccion {
     public static int[] ordenanzaSeleccionInternet(int[] arreglo){
     int i, j, menor, pos, tmp; // 5 pasos 
           for (i = 0; i < arreglo.length - 1; i++) {  // 4 pasos
-                menor = arreglo[i]; // 1 paso
+                menor = arreglo[i]; // 2 paso
                 pos = i; // 1 paso
                 for (j = i + 1; j < arreglo.length; j++){ // 4 pasos
-                      if (arreglo[j] < menor) { // 1 paso
-                          menor = arreglo[j]; // 1 paso
+                      if (arreglo[j] < menor) { // 2 paso
+                          menor = arreglo[j]; // 2 paso
                           pos = j;// 1 paso
                       }
                 }
                 if (pos != i){ // 1 paso
-                    tmp = arreglo[i]; // 1 paso
-                    arreglo[i] = arreglo[pos]; // 1 paso
-                    arreglo[pos] = tmp; // 1 paso
+                    tmp = arreglo[i]; // 2 paso
+                    arreglo[i] = arreglo[pos]; // 3 paso
+                    arreglo[pos] = tmp; //2 paso
                 }
           }
           
-        // ordenanzaSeleccion 5+7n+5x(2)+3  
+        // ordenanzaSeleccion = 5+8n(9n)+7  
           return arreglo;
     }
     
