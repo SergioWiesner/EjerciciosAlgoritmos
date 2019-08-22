@@ -11,16 +11,19 @@ public class OrdenInsecionSeleccion {
     }
 
     public static int[] ordenanzaInsecion(int[] arreglo) {
-        int x, j;
-        for (int i = 1; i < arreglo.length; i++) {
-            x = arreglo[i];
-            j = i - 1;
-            while (j > 0 && x < arreglo[j]) {
-                arreglo[j + 1] = arreglo[j];
-                j--;
-                arreglo[j + 1] = x;
+        int x, j; // 2 pasos contastes 
+        for (int i = 1; i < arreglo.length; i++) { //3 pasos
+            x = arreglo[i]; // 1 paso
+            j = i - 1; // 2 paso
+            while (j > 0 && x < arreglo[j]) { // 2 paso
+                arreglo[j + 1] = arreglo[j]; // 1 paso
+                j--; // 1 paso
+                arreglo[j + 1] = x; // 1 paso
             }
         }
+        
+        //ordenanzaInsecion = 2+3n+3n+n(2x+3x)
+        
         return arreglo;
     }
     
@@ -42,22 +45,24 @@ public class OrdenInsecionSeleccion {
     }
 
     public static int[] ordenanzaSeleccionInternet(int[] arreglo){
-    int i, j, menor, pos, tmp;
-          for (i = 0; i < arreglo.length - 1; i++) { 
-                menor = arreglo[i]; 
-                pos = i; 
-                for (j = i + 1; j < arreglo.length; j++){ 
-                      if (arreglo[j] < menor) { 
-                          menor = arreglo[j]; 
-                          pos = j;
+    int i, j, menor, pos, tmp; // 5 pasos 
+          for (i = 0; i < arreglo.length - 1; i++) {  // 4 pasos
+                menor = arreglo[i]; // 1 paso
+                pos = i; // 1 paso
+                for (j = i + 1; j < arreglo.length; j++){ // 4 pasos
+                      if (arreglo[j] < menor) { // 1 paso
+                          menor = arreglo[j]; // 1 paso
+                          pos = j;// 1 paso
                       }
                 }
-                if (pos != i){
-                    tmp = arreglo[i];
-                    arreglo[i] = arreglo[pos];
-                    arreglo[pos] = tmp;
+                if (pos != i){ // 1 paso
+                    tmp = arreglo[i]; // 1 paso
+                    arreglo[i] = arreglo[pos]; // 1 paso
+                    arreglo[pos] = tmp; // 1 paso
                 }
           }
+          
+        // ordenanzaSeleccion 5+7n+5x(2)+3  
           return arreglo;
     }
     
