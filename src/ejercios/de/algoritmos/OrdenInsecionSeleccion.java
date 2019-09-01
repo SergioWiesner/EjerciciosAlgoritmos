@@ -11,19 +11,22 @@ public class OrdenInsecionSeleccion {
     }
 
     public static int[] ordenanzaInsecion(int[] arreglo) {
-        int x, j;
-        for (int i = 2; i <= arreglo.length; i++) {
-            x = arreglo[i];
-            j = i - 1;
-            while (j > 0 && x < arreglo[j]) {
-                arreglo[j + 1] = arreglo[j];
-                j--;
-                arreglo[j + 1] = x;
+        int x, j; // 2 pasos contastes 
+        for (int i = 1; i < arreglo.length; i++) { //3 pasos
+            x = arreglo[i]; // 2 paso
+            j = i - 1; // 2 paso
+            while (j > 0 && x < arreglo[j]) { // 4 paso
+                arreglo[j + 1] = arreglo[j]; // 3 paso
+                j--; // 1 paso
+                arreglo[j + 1] = x; // 2 paso
             }
         }
+       
+        //ordenanzaInsecion = 2+n(7+10(n-1))
+        
         return arreglo;
     }
-
+    
     public static int[] ordenanzaSeleccion(int[] arreglo) {
         int minj, minx;
         for (int i = 1; i < arreglo.length - 1; i++) {
@@ -41,6 +44,28 @@ public class OrdenInsecionSeleccion {
         return arreglo;
     }
 
+    public static int[] ordenanzaSeleccionInternet(int[] arreglo){
+    int i, j, menor, pos, tmp; // 5 pasos 
+          for (i = 0; i < arreglo.length - 1; i++) {  // 4 pasos
+                menor = arreglo[i]; // 2 paso
+                pos = i; // 1 paso
+                for (j = i + 1; j < arreglo.length; j++){ // 4 pasos
+                      if (arreglo[j] < menor) { // 2 paso
+                          menor = arreglo[j]; // 2 paso
+                          pos = j;// 1 paso
+                      }
+                }
+                if (pos != i){ // 1 paso
+                    tmp = arreglo[i]; // 2 paso
+                    arreglo[i] = arreglo[pos]; // 3 paso
+                    arreglo[pos] = tmp; //2 paso
+                }
+          }
+          
+        // ordenanzaSeleccion = 5+8n(9n)+7  
+          return arreglo;
+    }
+    
     public static void mostrarArray(int[] secencias) {
         String cadena = "[";
         for (int a = 0; a < secencias.length; a++) {
@@ -69,23 +94,23 @@ public class OrdenInsecionSeleccion {
 
                 System.out.println("ordenado ....");
                 OrdenInsecionSeleccion.mostrarArray(u);
-                startTime = System.currentTimeMillis();
+                startTime = System.nanoTime();
                 resultado = OrdenInsecionSeleccion.ordenanzaInsecion(u);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 System.out.println("desordenado ....");
                 OrdenInsecionSeleccion.mostrarArray(v);
-                startTime = System.currentTimeMillis();
+                startTime = System.nanoTime();
                 resultado = OrdenInsecionSeleccion.ordenanzaInsecion(v);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 System.out.println("iguales ....");
                 OrdenInsecionSeleccion.mostrarArray(w);
-                startTime = System.currentTimeMillis();
+                startTime = System.nanoTime();
                 resultado = OrdenInsecionSeleccion.ordenanzaInsecion(w);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 main();
@@ -94,23 +119,23 @@ public class OrdenInsecionSeleccion {
 
                 System.out.println("ordenado ....");
                 OrdenInsecionSeleccion.mostrarArray(u);
-                startTime = System.currentTimeMillis();
-                resultado = OrdenInsecionSeleccion.ordenanzaSeleccion(u);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                startTime = System.nanoTime();
+                resultado = OrdenInsecionSeleccion.ordenanzaSeleccionInternet(u);
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 System.out.println("desordenado ....");
                 OrdenInsecionSeleccion.mostrarArray(v);
-                startTime = System.currentTimeMillis();
-                resultado = OrdenInsecionSeleccion.ordenanzaSeleccion(v);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                startTime = System.nanoTime();
+                resultado = OrdenInsecionSeleccion.ordenanzaSeleccionInternet(v);
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 System.out.println("iguales ....");
                 OrdenInsecionSeleccion.mostrarArray(w);
-                startTime = System.currentTimeMillis();
-                resultado = OrdenInsecionSeleccion.ordenanzaSeleccion(w);
-                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.currentTimeMillis() - startTime));
+                startTime = System.nanoTime();
+                resultado = OrdenInsecionSeleccion.ordenanzaSeleccionInternet(w);
+                System.out.println("Tiempo de ejecución -> " + String.valueOf(System.nanoTime() - startTime)+" nanosegundos");
                 OrdenInsecionSeleccion.mostrarArray(resultado);
 
                 main();
