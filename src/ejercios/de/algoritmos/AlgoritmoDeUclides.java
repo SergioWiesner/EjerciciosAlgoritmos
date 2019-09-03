@@ -19,5 +19,7 @@ public class AlgoritmoDeUclides {
         }
         System.out.println(b);
         return b;
-    }    
+        
+        // 5+6a%b
+    } 
 }
