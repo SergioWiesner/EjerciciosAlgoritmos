@@ -24,6 +24,7 @@ public class EjerciosDeAlgoritmos {
             case 3:
                 AlgoritmoDeUclides uclides = new AlgoritmoDeUclides();
                 uclides.euclides();
+                menu();
                 break;    
             default:
                 break;
