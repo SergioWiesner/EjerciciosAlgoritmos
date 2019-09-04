@@ -25,8 +25,9 @@ public class Potencias {
             p = p * y;  // 2
             z = z - 1; // 2
         } //1
+        System.out.println("resultado es -> " + p);
         return p; //1
-        
+
         //z = 1      7 + 5z + 1
         //z = 2      7 + 5z + 1
     }
@@ -40,15 +41,20 @@ public class Potencias {
         System.out.println("Ingresa el exponente");
         z = scan.nextInt(); // 1
         while (z > 0) { // 1
-            p = p * y; // 2
+            
+            if ((z % 2) != 0) { // 2
+                p = p * y; // 2
+            }
+            
             z = z / 2; // 2
             y = y * y; // 2
         } // 1
+        System.out.println("resultado es -> " + p);
         return p; //1 
         //z = 1           7 + 8z + 1
         //z = 2           7 + 8z + 1
     }
-    
+
     public static void main() {
         System.out.println("1. potenciacion altgoritmo 1");
         System.out.println("2. potenciacion altgoritmo 2");
@@ -57,15 +63,15 @@ public class Potencias {
         switch (opc) {
             case 1:
                 formaUno();
+                main();
                 break;
             case 2:
                 formaDos();
+                main();
                 break;
             default:
                 break;
         }
     }
-    
-    
 
 }
