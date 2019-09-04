@@ -27,7 +27,8 @@ public class Potencias {
         } //1
         return p; //1
         
-        // 7 + 5z + 1
+        //z = 1      7 + 5z + 1
+        //z = 2      7 + 5z + 1
     }
 
     public static int formaDos() {
@@ -44,7 +45,8 @@ public class Potencias {
             y = y * y; // 2
         } // 1
         return p; //1 
-        // 7 + 8z + 1
+        //z = 1           7 + 8z + 1
+        //z = 2           7 + 8z + 1
     }
     
     public static void main() {
