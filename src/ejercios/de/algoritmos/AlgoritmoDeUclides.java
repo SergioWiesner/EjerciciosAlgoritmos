@@ -7,9 +7,9 @@ public class AlgoritmoDeUclides {
     public static int euclides(){
         int t, a, b; // 3
         Scanner scan = new Scanner(System.in);
-        System.out.println("Ingresa la base a potenciar");
+        System.out.println("Ingresa el primer numero");
         a = scan.nextInt(); // 1
-        System.out.println("Ingresa el exponente");
+        System.out.println("Ingresa el segundo numero");
         b = scan.nextInt(); // 1
         
         while(a > 0){ // 1 
@@ -17,7 +17,7 @@ public class AlgoritmoDeUclides {
             a = b % a; // 2
             b = t; // 1
         } // 1
-        System.out.println(b);
+        System.out.println("Residuos "+b);
         return b; // 1
         
         // 6 + 5a + 1
