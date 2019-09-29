@@ -1,4 +1,4 @@
-package ejercios.de.algoritmos;
+package ejercicios.de.algoritmos;
 
 import java.util.Scanner;
 
