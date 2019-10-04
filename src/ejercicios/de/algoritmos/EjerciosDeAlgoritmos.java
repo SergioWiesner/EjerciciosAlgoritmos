@@ -1,6 +1,7 @@
-package ejercios.de.algoritmos;
+package ejercicios.de.algoritmos;
 
-import ejercios.de.algoritmos.OrdenInsecionSeleccion;
+import ejercicios.de.algoritmos.OrdenInsecionSeleccion;
+import ejercicios.de.algoritmos.AlgotimosVoraces;
 import java.util.Scanner;
 
 public class EjerciosDeAlgoritmos {
@@ -10,6 +11,7 @@ public class EjerciosDeAlgoritmos {
         System.out.println("1. Orden inseción seleccion.");
         System.out.println("2. Algoritmos de potenciacion.");
         System.out.println("3. Algoritmo de euclides.");
+        System.out.println("4. Algoritmos voraces.");
         Scanner scan = new Scanner(System.in);
         int opc = scan.nextInt();
         switch(opc){
@@ -24,7 +26,11 @@ public class EjerciosDeAlgoritmos {
             case 3:
                 AlgoritmoDeUclides uclides = new AlgoritmoDeUclides();
                 uclides.euclides();
-                break;    
+                break; 
+            case 4:
+                AlgotimosVoraces voraces = new AlgotimosVoraces();
+                voraces.menu();
+                break; 
             default:
                 break;
         }

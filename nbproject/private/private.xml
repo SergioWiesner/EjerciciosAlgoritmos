@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC-47050/Documents/NetBeansProjects/Ejercios%20de%20algoritmos/src/ejercios/de/algoritmos/Potencias.java</file>
-            <file>file:/C:/Users/PC-47050/Documents/NetBeansProjects/Ejercios%20de%20algoritmos/src/ejercios/de/algoritmos/OrdenInsecionSeleccion.java</file>
-            <file>file:/C:/Users/PC-47050/Documents/NetBeansProjects/Ejercios%20de%20algoritmos/src/ejercios/de/algoritmos/EjerciosDeAlgoritmos.java</file>
+            <file>file:/C:/Users/webdev/Documents/NetBeansProjects/Ejercios%20de%20algoritmos/src/ejercicios/de/algoritmos/OrdenInsecionSeleccion.java</file>
+            <file>file:/C:/Users/webdev/Documents/NetBeansProjects/Ejercios%20de%20algoritmos/src/ejercicios/de/algoritmos/Potencias.java</file>
+            <file>file:/C:/Users/webdev/Documents/NetBeansProjects/Ejercios%20de%20algoritmos/src/ejercicios/de/algoritmos/AlgotimosVoraces.java</file>
+            <file>file:/C:/Users/webdev/Documents/NetBeansProjects/Ejercios%20de%20algoritmos/src/ejercicios/de/algoritmos/AlgoritmoDeUclides.java</file>
+            <file>file:/C:/Users/webdev/Documents/NetBeansProjects/Ejercios%20de%20algoritmos/src/ejercicios/de/algoritmos/EjerciosDeAlgoritmos.java</file>
         </group>
     </open-files>
 </project-private>
