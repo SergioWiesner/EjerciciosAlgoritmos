@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.Random;
 import java.security.SecureRandom;
 import static ejercicios.de.algoritmos.OrdenInsecionSeleccion.ordenanzaSeleccionInternet;
+import utilidades.Figuras;
 
 /**
  *
@@ -17,13 +18,22 @@ import static ejercicios.de.algoritmos.OrdenInsecionSeleccion.ordenanzaSeleccion
 public class AlgotimosVoraces {
 
     public void menu() {
-        AlgotimosVoraces yo = new AlgotimosVoraces();
-        System.out.println("1. Ejercicio corrupción votantes.");
-        Scanner scan = new Scanner(System.in);
-        int opc = scan.nextInt();
+        int opc = 0;
+        try {
+            System.out.println("1. Ejercicio corrupción votantes.");
+            System.out.println("1. Ejercicio tablero fichas.");
+            Scanner scan = new Scanner(System.in);
+            opc = scan.nextInt();
+        } catch (Exception e) {
+            System.out.println("Error al ingresar el numero");
+            menu();
+        }
         switch (opc) {
             case 1:
-                yo.corrupcionVotantes();
+                corrupcionVotantes();
+                break;
+            case 2:
+                tableroFichas();
                 break;
             default:
                 break;
@@ -86,9 +96,9 @@ public class AlgotimosVoraces {
         for (int d = 0; d < votantes; d++) {
             muestra += "Votante " + mapa[0][d] + "\t";
             for (int e = 0; e < candidatos; e++) {
-                muestra +=  tablero[d][e] + "% \t";
+                muestra += tablero[d][e] + "% \t";
             }
-            muestra +=  mapa[1][d] + "\t \n";
+            muestra += mapa[1][d] + "\t \n";
         }
 
         System.out.println(muestra);
@@ -119,15 +129,56 @@ public class AlgotimosVoraces {
         muestra = "Votante\t Va. compra\t \n";
         while (g < lum) {
             for (int h = 0; h < valorcompra.length; h++) {
-                if(valorcompra[g] == mapa[3][h]){
-                muestra += mapa[0][h] + "\t" + mapa[3][h] + "\n";
-                sumatoria += mapa[3][h];
+                if (valorcompra[g] == mapa[3][h]) {
+                    muestra += mapa[0][h] + "\t" + mapa[3][h] + "\n";
+                    sumatoria += mapa[3][h];
                 }
             }
             g++;
         }
         System.out.println(muestra);
-        System.out.println("TOTAL DE DINERO PARA GANAR :"+sumatoria);
+        System.out.println("TOTAL DE DINERO PARA GANAR :" + sumatoria);
+    }
+
+    public void tableroFichas() {
+        int ancho, alto, n, beneficio, g, intent, sumatoria;
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Ingrese las dimensiones del tablero ancho x alto");
+        ancho = scan.nextInt();
+        alto = scan.nextInt();
+        int[][] tablero = new int[ancho][alto];
+        
+        System.out.println("Ingrese el numero de figuras.");
+        n = scan.nextInt();
+        // 0. Id pieza
+        // 1. Ancho
+        // 2. Alto
+        // 3. Beneficio
+        Figuras arrayObjetos[] = new Figuras[n];
+        
+        //0. Id Pieza
+        //1. Beneficio real
+        int[][] beneficiosReales = new int[2][n];
+        int[] resultados = new int[n];
+        for (int a = 0; a < n; a++) {
+            System.out.println("Ingrese las dimensiones de la figura " + a);
+            System.out.println("Ancho:");
+            ancho = scan.nextInt();
+            System.out.println("Alto:");
+            alto = scan.nextInt();
+            System.out.println("Beneficio:");
+            beneficio = scan.nextInt();
+            arrayObjetos[a] = new Figuras(a, ancho, alto, beneficio);
+            beneficiosReales[0][a] = arrayObjetos[a].getId();
+            beneficiosReales[1][a] = arrayObjetos[a].getBeneficioReal();
+        }
+        
+        resultados = ordenanzaSeleccionInternet(beneficiosReales[1].clone());
+        
+        
+        
+
     }
 
 }

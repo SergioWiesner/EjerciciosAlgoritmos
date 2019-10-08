@@ -7,13 +7,19 @@ import java.util.Scanner;
 public class EjerciosDeAlgoritmos {
 
     public void menu() {
+        int opc = 0;
+        try{
         System.out.println("Ecoge el ejecicio a probar");
         System.out.println("1. Orden inseción seleccion.");
         System.out.println("2. Algoritmos de potenciacion.");
         System.out.println("3. Algoritmo de euclides.");
         System.out.println("4. Algoritmos voraces.");
         Scanner scan = new Scanner(System.in);
-        int opc = scan.nextInt();
+        opc = scan.nextInt();
+        }catch(Exception e){
+         System.out.println("Error en el numero ingresado ");
+            menu();
+        }
         switch(opc){
             case 1:
                 OrdenInsecionSeleccion main = new OrdenInsecionSeleccion();
