@@ -41,11 +41,11 @@ public class Potencias {
         System.out.println("Ingresa el exponente");
         z = scan.nextInt(); // 1
         while (z > 0) { // 1
-            
+
             if ((z % 2) != 0) { // 2
                 p = p * y; // 2
             }
-            
+
             z = z / 2; // 2
             y = y * y; // 2
         } // 1
@@ -58,6 +58,7 @@ public class Potencias {
     public static void main() {
         System.out.println("1. potenciacion altgoritmo 1");
         System.out.println("2. potenciacion altgoritmo 2");
+        System.out.println("10. atras");
         Scanner scan = new Scanner(System.in);
         int opc = scan.nextInt();
         switch (opc) {
@@ -69,7 +70,10 @@ public class Potencias {
                 formaDos();
                 main();
                 break;
+            case 10:
+                break;
             default:
+                main();
                 break;
         }
     }
