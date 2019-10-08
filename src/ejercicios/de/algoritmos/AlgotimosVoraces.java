@@ -84,7 +84,7 @@ public class AlgotimosVoraces {
         muestra += "Valor\t \n";
 
         for (int d = 0; d < votantes; d++) {
-            muestra += "Votante " + mapa[1][0] + "\t";
+            muestra += "Votante " + mapa[0][d] + "\t";
             for (int e = 0; e < candidatos; e++) {
                 muestra +=  tablero[d][e] + "% \t";
             }
@@ -93,7 +93,7 @@ public class AlgotimosVoraces {
 
         System.out.println(muestra);
 
-       // for(int pr = 0 ; pr < mapa[1].length; pr++){
+        // for(int pr = 0 ; pr < mapa[1].length; pr++){
         //     System.out.println(mapa[0][pr]+" "+mapa[1][pr]+" "+mapa[2][pr]+" "+mapa[3][pr]+"\n");
         // }
         System.out.println("¿Cual candidato quiere que gane?");
@@ -116,7 +116,7 @@ public class AlgotimosVoraces {
         lum = (lumbral * votantes / 100);
         g = 0;
         sumatoria = 0;
-        muestra = "Votante\t Va. compra\t";
+        muestra = "Votante\t Va. compra\t \n";
         while (g < lum) {
             for (int h = 0; h < valorcompra.length; h++) {
                 if(valorcompra[g] == mapa[3][h]){
@@ -126,6 +126,7 @@ public class AlgotimosVoraces {
             }
             g++;
         }
+        System.out.println(muestra);
         System.out.println("TOTAL DE DINERO PARA GANAR :"+sumatoria);
     }
 
