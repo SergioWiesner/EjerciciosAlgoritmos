@@ -20,8 +20,9 @@ public class AlgotimosVoraces {
     public void menu() {
         int opc = 0;
         try {
+            System.out.println("\t MENU DE ALGORITMOS VORACES \t \n\n\n");
             System.out.println("1. Ejercicio corrupción votantes.");
-            System.out.println("1. Ejercicio tablero fichas.");
+            System.out.println("2. Ejercicio tablero fichas.");
             Scanner scan = new Scanner(System.in);
             opc = scan.nextInt();
         } catch (Exception e) {
@@ -141,14 +142,16 @@ public class AlgotimosVoraces {
     }
 
     public void tableroFichas() {
-        int ancho, alto, n, beneficio, g, intent, sumatoria;
+        int ancho, alto, n, beneficio, areaTablero, sumatoriabeneficios;
         Scanner scan = new Scanner(System.in);
-
-        System.out.println("Ingrese las dimensiones del tablero ancho x alto");
+        System.out.println("Ingrese las dimensiones del tablero");
+        System.out.println("Ingrese el ancho.");
         ancho = scan.nextInt();
+        System.out.println("Ingrese el alto.");
         alto = scan.nextInt();
+        sumatoriabeneficios = 0;
         int[][] tablero = new int[ancho][alto];
-        
+        areaTablero = ancho * alto;
         System.out.println("Ingrese el numero de figuras.");
         n = scan.nextInt();
         // 0. Id pieza
@@ -156,7 +159,7 @@ public class AlgotimosVoraces {
         // 2. Alto
         // 3. Beneficio
         Figuras arrayObjetos[] = new Figuras[n];
-        
+
         //0. Id Pieza
         //1. Beneficio real
         int[][] beneficiosReales = new int[2][n];
@@ -170,15 +173,33 @@ public class AlgotimosVoraces {
             System.out.println("Beneficio:");
             beneficio = scan.nextInt();
             arrayObjetos[a] = new Figuras(a, ancho, alto, beneficio);
+            
             beneficiosReales[0][a] = arrayObjetos[a].getId();
-            beneficiosReales[1][a] = arrayObjetos[a].getBeneficioReal();
+            beneficiosReales[1][a] = arrayObjetos[a].getBeneficio();
         }
         
+        // ORDENAMIENTO
         resultados = ordenanzaSeleccionInternet(beneficiosReales[1].clone());
         
-        
-        
+        int residuo = 0;
+        //areaTablero
+        while (areaTablero != 0) {
+            for (int i = (resultados.length-1); i > 0; i--) {
+                if (beneficiosReales[1][i] == resultados[i]) {
+                    if ((areaTablero - arrayObjetos[i].getAreaTotalFigura()) > 0) {
+                        System.out.println("Se tomo todos los cuadros de la figura con id -> " + beneficiosReales[0][i]);
+                        areaTablero -= arrayObjetos[i].getAreaTotalFigura();
+                        sumatoriabeneficios += arrayObjetos[beneficiosReales[0][i]].beneficio;
+                    } else {                  
+                        residuo = arrayObjetos[i].getAreaTotalFigura() - areaTablero;
+                        System.out.println("Se tomo "+areaTablero+" cuadros de la figura con id -> " + arrayObjetos[beneficiosReales[0][i]].getId()+" quedaron sobrando "+residuo+" cuadros");
+                        sumatoriabeneficios += (areaTablero* arrayObjetos[beneficiosReales[0][i]].getBeneficioReal());
+                        areaTablero = 0;
+                    }
+                }
+            }
+        }
 
+        System.out.println("SUMATORIA DEL BENEFICIO TOTAL -> " + sumatoriabeneficios);
     }
-
 }

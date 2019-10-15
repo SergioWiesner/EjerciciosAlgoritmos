@@ -9,6 +9,7 @@ public class EjerciosDeAlgoritmos {
     public void menu() {
         int opc = 0;
         try{
+        System.out.println("\t MENU PRINCIPAL \t \n\n\n");
         System.out.println("Ecoge el ejecicio a probar");
         System.out.println("1. Orden inseción seleccion.");
         System.out.println("2. Algoritmos de potenciacion.");

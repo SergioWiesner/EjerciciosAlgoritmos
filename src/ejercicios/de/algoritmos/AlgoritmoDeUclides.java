@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class AlgoritmoDeUclides {   
 
     public static int euclides(){
+        System.out.println("\t ALGORITMO DE EUCLIDES \t \n\n\n");
         int t, a, b; // 3
         Scanner scan = new Scanner(System.in);
         System.out.println("Ingresa el primer numero");
