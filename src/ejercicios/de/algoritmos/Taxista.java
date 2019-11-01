@@ -26,7 +26,8 @@ public class Taxista {
         iniciarMapa();
         coordenadasinicio = puntoInicial();
         coordenadasfin = puntoFinal();
-        generarCaminos(coordenadasinicio, coordenadasfin);
+        int cantidadcaminos = generarCaminos(coordenadasinicio, coordenadasfin);
+        System.out.println("Cantidad de caminos ->"+cantidadcaminos);
     }
 
     public void iniciarMapa(){
@@ -86,18 +87,23 @@ public class Taxista {
         return punto;
     }
     
-    public int[] generarCaminos(int[] puntoinicial, int[] puntofinal, int[] puntoactual, int a){
-        if(puntoactual[0] == puntofinal[0] && puntoactual[1] == puntofinal[1]){
-            return puntoactual;
-        }
+    public int generarCaminos(int[] puntoinicial, int[] puntofinal){
+   
+        int caminoencontrado = 0;
+    
+        if(puntoinicial[0] == puntofinal[0] && puntoinicial[1] == puntofinal[1]){
+           return 1;
+        } 
 
-        int[] maxAbajo = generarCaminos(puntoinicial,puntofinal, puntoactual, a);
-        int[] maxDerecha = generarCaminos(puntoinicial,puntofinal, puntoactual,a);
-        
-        puntoactual[0]++;
-        puntoactual[1]++;
-        
-        return puntoactual;
+        puntoinicial[0] = puntoinicial[0]+1;
+        caminoencontrado = generarCaminos(puntoinicial , puntofinal) + caminoencontrado;
+
+
+        puntoinicial[1] = puntoinicial[1]+1;
+        caminoencontrado = generarCaminos(puntoinicial , puntofinal) + caminoencontrado;
+
+
+     return caminoencontrado;
     }
     
     
