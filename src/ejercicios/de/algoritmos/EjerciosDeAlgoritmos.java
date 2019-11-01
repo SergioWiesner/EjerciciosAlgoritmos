@@ -15,6 +15,7 @@ public class EjerciosDeAlgoritmos {
         System.out.println("2. Algoritmos de potenciacion.");
         System.out.println("3. Algoritmo de euclides.");
         System.out.println("4. Algoritmos voraces.");
+        System.out.println("5. Ejercicio de taxista.");
         Scanner scan = new Scanner(System.in);
         opc = scan.nextInt();
         }catch(Exception e){
@@ -38,6 +39,11 @@ public class EjerciosDeAlgoritmos {
                 AlgotimosVoraces voraces = new AlgotimosVoraces();
                 voraces.menu();
                 break; 
+            case 5:
+              Taxista taxi = new Taxista();
+              taxi.inicio();
+   
+              break; 
             default:
                 break;
         }

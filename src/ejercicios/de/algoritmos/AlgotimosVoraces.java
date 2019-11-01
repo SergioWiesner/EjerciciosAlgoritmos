@@ -142,7 +142,8 @@ public class AlgotimosVoraces {
     }
 
     public void tableroFichas() {
-        int ancho, alto, n, beneficio, areaTablero, sumatoriabeneficios;
+        int ancho, alto, n, beneficio, areaTablero;
+        double sumatoriabeneficios;
         Scanner scan = new Scanner(System.in);
         System.out.println("Ingrese las dimensiones del tablero");
         System.out.println("Ingrese el ancho.");
@@ -181,7 +182,7 @@ public class AlgotimosVoraces {
         // ORDENAMIENTO
         resultados = ordenanzaSeleccionInternet(beneficiosReales[1].clone());
         
-        int residuo = 0;
+        double residuo = 0;
         //areaTablero
         while (areaTablero != 0) {
             for (int i = (resultados.length-1); i > 0; i--) {
@@ -193,7 +194,8 @@ public class AlgotimosVoraces {
                     } else {                  
                         residuo = arrayObjetos[i].getAreaTotalFigura() - areaTablero;
                         System.out.println("Se tomo "+areaTablero+" cuadros de la figura con id -> " + arrayObjetos[beneficiosReales[0][i]].getId()+" quedaron sobrando "+residuo+" cuadros");
-                        sumatoriabeneficios += (areaTablero* arrayObjetos[beneficiosReales[0][i]].getBeneficioReal());
+                        System.out.println("a multilicar -> "+areaTablero+" por el valor unitario -> "+((double)areaTablero * arrayObjetos[beneficiosReales[0][i]].getBeneficioUnitario())+" calculo del beneficio -> "+(areaTablero * arrayObjetos[beneficiosReales[0][i]].getBeneficioUnitario()));
+                        sumatoriabeneficios += ((double)areaTablero * arrayObjetos[beneficiosReales[0][i]].getBeneficioUnitario());
                         areaTablero = 0;
                     }
                 }
