@@ -56,6 +56,7 @@ public class Potencias {
     }
 
     public static void main() {
+        System.out.println("\t MENU DE ALGORITMOS DE POTENCIACIÓN \t \n\n\n");
         System.out.println("1. potenciacion altgoritmo 1");
         System.out.println("2. potenciacion altgoritmo 2");
         System.out.println("10. atras");

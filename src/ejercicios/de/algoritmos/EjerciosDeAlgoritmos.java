@@ -9,11 +9,13 @@ public class EjerciosDeAlgoritmos {
     public void menu() {
         int opc = 0;
         try{
+        System.out.println("\t MENU PRINCIPAL \t \n\n\n");
         System.out.println("Ecoge el ejecicio a probar");
         System.out.println("1. Orden inseción seleccion.");
         System.out.println("2. Algoritmos de potenciacion.");
         System.out.println("3. Algoritmo de euclides.");
         System.out.println("4. Algoritmos voraces.");
+        System.out.println("5. Ejercicio de taxista.");
         Scanner scan = new Scanner(System.in);
         opc = scan.nextInt();
         }catch(Exception e){
@@ -37,6 +39,11 @@ public class EjerciosDeAlgoritmos {
                 AlgotimosVoraces voraces = new AlgotimosVoraces();
                 voraces.menu();
                 break; 
+            case 5:
+              Taxista taxi = new Taxista();
+              taxi.inicio();
+   
+              break; 
             default:
                 break;
         }

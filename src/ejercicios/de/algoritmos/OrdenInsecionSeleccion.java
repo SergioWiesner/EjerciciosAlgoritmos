@@ -84,7 +84,7 @@ public class OrdenInsecionSeleccion {
         int[] w = {1, 1, 1, 1, 1, 1};
         int[] resultado;
         long startTime;
-
+        System.out.println("\t MENU DE ALGORITMOS DE ORDENAMIENTOS \t \n\n\n");
         System.out.println("1. Ordenanza por insecion.");
         System.out.println("2. Ordenanza por seleccion.");
         Scanner scan = new Scanner(System.in);

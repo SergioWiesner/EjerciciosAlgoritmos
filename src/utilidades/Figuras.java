@@ -36,8 +36,8 @@ public class Figuras {
         return this.beneficio;
     }
     
-    public int getBeneficioReal() {
-        return (this.beneficio/(this.ancho*this.alto));
+    public double getBeneficioUnitario() {
+        return this.beneficio/(this.ancho*this.alto);
     }
     
     public int getAreaTotalFigura() {
