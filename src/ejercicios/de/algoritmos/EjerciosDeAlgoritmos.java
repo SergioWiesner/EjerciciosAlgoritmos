@@ -2,6 +2,8 @@ package ejercicios.de.algoritmos;
 
 import ejercicios.de.algoritmos.OrdenInsecionSeleccion;
 import ejercicios.de.algoritmos.AlgotimosVoraces;
+import ejercicios.finales.Menu;
+
 import java.util.Scanner;
 
 public class EjerciosDeAlgoritmos {
@@ -16,6 +18,7 @@ public class EjerciosDeAlgoritmos {
         System.out.println("3. Algoritmo de euclides.");
         System.out.println("4. Algoritmos voraces.");
         System.out.println("5. Ejercicio de taxista.");
+        System.out.println("6. Ejercicios final corte.");
         Scanner scan = new Scanner(System.in);
         opc = scan.nextInt();
         }catch(Exception e){
@@ -42,7 +45,10 @@ public class EjerciosDeAlgoritmos {
             case 5:
               Taxista taxi = new Taxista();
               taxi.inicio();
-   
+              break; 
+            case 6:
+              Menu menu = new Menu();
+              menu.menu();
               break; 
             default:
                 break;
