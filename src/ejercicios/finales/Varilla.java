@@ -15,7 +15,7 @@ public class Varilla {
     }
 
     public void init() {
-        System.out.println("\t MENU PRINCIPAL \t \n\n\n");
+        System.out.println("\t EJERCICIO DE LA VARILLA \t \n\n\n");
         System.out.println("ingrese el tamaño de la varialla");
         this.longitud = in.nextInt();
         this.memoria = new int[this.longitud];
