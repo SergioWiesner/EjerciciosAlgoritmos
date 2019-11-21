@@ -51,7 +51,7 @@ public class RamificacionPoda {
     public int conviancionOptima(int[][] tableroactual, int persona, int tarea, int totalsumatoria) {
 
         if (persona >= tableroactual.length || tarea >= tableroactual[0].length) {
-            return 0;
+            return totalsumatoria;
         }
         
         int actual = tableroactual[persona][tarea];
@@ -59,21 +59,30 @@ public class RamificacionPoda {
         int siguientetarea = 0;
 
         if (persona < tableroactual.length) {
-            System.out.println("Entra en persona " + (persona + 1) + " En  tarea -> " + tarea);
+            
+            //System.out.println("Entra en persona " + (persona + 1) + " En  tarea -> " + tarea);
             siguientepersona = conviancionOptima(tableroactual, (persona + 1), tarea, totalsumatoria);
-            if(siguientepersona != 0){
-            if ((totalsumatoria + siguientepersona) < (totalsumatoria + actual)) {
-                System.out.println("Persona -> " + (persona + 1) + " En la tarea -> " + tarea);
-                totalsumatoria = totalsumatoria + siguientepersona;
-            }
-            }
+            //System.out.println("ESTO RESULTA DE LA PERSONAS "+(persona + 1)+" -> "+siguientepersona+" ESTO HAY EN EL TABLERO -> "+tableroactual[persona][tarea]);
+                if ((totalsumatoria + siguientepersona) < (totalsumatoria + actual) && siguientepersona != 0) {
+                    System.out.println("Persona -> " + (persona + 1) + " En la tarea -> " + tarea);
+                    totalsumatoria = totalsumatoria + siguientepersona;
+                    System.out.println("Con una sumatoria de -> " + totalsumatoria);
+                }else{
+                    totalsumatoria = totalsumatoria + actual;
+              //      System.out.println("Opc 1 -> " + (totalsumatoria + siguientepersona) + " Opc 2 -> "+(totalsumatoria + actual));
+                }
+               
+
         }
 
         if (tarea < tableroactual[persona].length) {
-            System.out.println("Entra en tarea ------------> " + tarea);
+            System.out.println("Entra en tarea ------------> " + (tarea+1));
             siguientetarea = conviancionOptima(tableroactual, persona, (tarea + 1), totalsumatoria);
             if ((totalsumatoria + siguientetarea) < (totalsumatoria + actual)) {
+                System.out.println("Persona -> " + (persona + 1) + " En la tarea -> " + tarea);
                 totalsumatoria = totalsumatoria + siguientetarea;
+                System.out.println("Con una sumatoria de -> " + totalsumatoria);
+            }else{
             }
         }
 
