@@ -8,6 +8,7 @@ public class Varilla {
     public int longitud, corte;
     public int[][] tabladeprecios;
     public int[] memoria;
+    public int globalindice;
     public Scanner in;
 
     public Varilla() {
@@ -18,22 +19,16 @@ public class Varilla {
         System.out.println("\t EJERCICIO DE LA VARILLA \t \n\n\n");
         System.out.println("ingrese el tamaño de la varialla");
         this.longitud = in.nextInt();
-        this.memoria = new int[this.longitud];
-        //System.out.println("ingrese la cantidad de cortes");
-        //this.corte = in.nextInt();
-
-//        if((this.longitud%this.corte) != 0){
-//          System.out.println("\n\n\nLa relacion de tamaño de varilla y cortes de la misma no dan cortes de longitun equitativos sobrarian -> "+(this.longitud%this.corte)+" puntos de longitud\n\n\n");
-//          init();
-//        }
-        cargarTablaPrecios();
+        this.globalindice = 0;
+        this.memoria = new int[(this.longitud * 2)];
+        cargarTablaPreciosAutomatico();
+        //cargarTablaPreciosManual();
         mostrarTablas(this.tabladeprecios);
-        
-        buscarCorteOptimo(0, 0, 0, " ");
-
+        buscarCorteOptimo();
+        mostarTablaPrecios();
     }
 
-    public void cargarTablaPrecios() {
+    public void cargarTablaPreciosAutomatico() {
         this.tabladeprecios = new int[2][this.longitud];
         int variable = 0;
         for (int a = 0; a < this.longitud; a++) {
@@ -44,6 +39,16 @@ public class Varilla {
                 variable = obtenerValor(a, this.tabladeprecios[1][a]);
             }
             this.tabladeprecios[1][a] = variable;
+        }
+    }
+
+    public void cargarTablaPreciosManual() {
+        this.tabladeprecios = new int[2][this.longitud];
+        int variable = 0;
+        for (int a = 0; a < this.longitud; a++) {
+            System.out.println("Ingrese el valor para el corte de varilla de tamaño " + (a + 1));
+            this.tabladeprecios[0][a] = a + 1;
+            this.tabladeprecios[1][a] = this.in.nextInt();
         }
     }
 
@@ -71,77 +76,52 @@ public class Varilla {
         System.out.println(muestra + "\n");
     }
 
-    public int buscarCorteOptimo(int cortes, int precio, int posicion, String rutaposiciones) {
-      rutaposiciones += " " + (this.tabladeprecios[0][posicion]);
-      if(cortes == 0){
-        cortes = 1;
-      }
-      
-        if (cortes == this.longitud) {
-            
-            System.out.println("Acumulado de precio " + precio);
-            System.out.println("Cortes " + cortes);
-            System.out.println("Convinacion de cortes " + rutaposiciones);
-            System.out.println("\n\n\n");
-            return cortes;
-        }
+    public void buscarCorteOptimo() {
+        // inicia la busqueda de convinaciones a partir de cortes de 1 
+        for (int z = 0; z < this.longitud; z++) {
 
-       
+            System.out.println("Convinacion " + (z + 1));
+            // inicia el acumulado a partir del indice de cortes en donde vaya
+            int acumulado = this.tabladeprecios[0][z];
 
-        if ((posicion - 1) >= 0) {
-            if ((cortes+this.tabladeprecios[0][posicion-1]) <= this.longitud) {                
-                // System.out.println("POR LA IZQUIERDA -> " + rutaposiciones);
-                buscarCorteOptimo((cortes+this.tabladeprecios[0][posicion-1]),(precio + this.tabladeprecios[1][posicion-1]),(posicion - 1), rutaposiciones);
-                
-            }
-        }
-        
-         if ((cortes+this.tabladeprecios[0][posicion]) <= this.longitud) {
+            System.out.println("Suma una pieza de corte " + this.tabladeprecios[0][z]);
+
+            // inicia el precio a partir del corte en que vaya
+            int precio = this.tabladeprecios[1][z];
             
-            // System.out.println("POR EL CENTRO -> " + rutaposiciones);
-            // System.out.println("CORTE ANTES -> " + cortes+ " CORTES DESPUES -> "+this.tabladeprecios[0][posicion]);
-            buscarCorteOptimo((cortes+this.tabladeprecios[0][posicion]),(precio + this.tabladeprecios[1][posicion]), posicion, rutaposiciones);
-        }
-         
-         
-        if ((posicion + 1) <= this.tabladeprecios[0].length) {
-            if ((cortes+this.tabladeprecios[0][posicion+1]) <= this.longitud) {                
-                // System.out.println("POR LA DERECHA -> " + rutaposiciones);
-                // System.out.println("CORTE ANTES -> " + cortes+ " CORTES DESPUES -> "+this.tabladeprecios[0][posicion+1]);
-                int cortenuevo = (cortes+this.tabladeprecios[0][posicion+1]);
-               // System.out.println("CORTE -> " + cortenuevo);
-                buscarCorteOptimo(cortenuevo,(precio + this.tabladeprecios[1][posicion+1]),(posicion + 1), rutaposiciones);
+            System.out.println("Numero de convinaciones de "+z+" por esa longitud "+this.longitud);
+            for (int a = 0; a < this.longitud; a++) {
+                // inicia convinacion de cortes
+                while ((acumulado + this.tabladeprecios[0][a]) <= this.longitud) {
+                    acumulado += this.tabladeprecios[0][a];
+                    precio += this.tabladeprecios[1][a];
+                    System.out.println("Suma una pieza de corte " + this.tabladeprecios[0][a]);
+                }
             }
+            System.out.println("\nAcumulado de precio " + precio + "\n\n");
+            this.memoria[this.globalindice++] = precio;
         }
-        
-        return cortes;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    public void buscarCorteOptimo() {
-//        for (int z = 0; z < this.longitud; z++) {
-//            int acumulado = this.tabladeprecios[0][z];
-//            System.out.println("Suma una pieza de corte " + this.tabladeprecios[0][z]);
-//            int precio = this.tabladeprecios[1][z];
-//
-//            for (int a = 0; a < this.longitud; a++) {
-//                while ((acumulado + this.tabladeprecios[0][a]) <= this.longitud) {
-//                    acumulado += this.tabladeprecios[0][a];
-//                    precio += this.tabladeprecios[1][a];
-//                    System.out.println("Suma una pieza de corte " + this.tabladeprecios[0][a]);
-//                }
-//            }
-//            System.out.println("\nAcumulado de precio " + precio + "\n\n");
-//        }
-//        this.memoria[a] =
-//    }
+    public void mostarTablaPrecios() {
+        int preciomax = this.memoria[0];
+        int conviacion = 0;
+        String muestra = "\n\nCONVINA\t";
+        for (int b = 0; b < this.memoria.length; b++) {
+            muestra += " " + (b + 1) + "\t";
+        }
+
+        muestra += "\nPRECIOS\t";
+        for (int a = 0; a < this.memoria.length; a++) {
+            muestra += " " + this.memoria[a] + "\t";
+            if (this.memoria[a] > preciomax) {
+                preciomax = this.memoria[a];
+                conviacion = a;
+            }
+        }
+        System.out.println(muestra + "\n");
+        System.out.println("LA CONVIANCION " + (conviacion + 1) + " POSEE EL MAYOR PRECIO, EL PRECIO ES -> " + preciomax + "\n");
+    }
+
+
 }
