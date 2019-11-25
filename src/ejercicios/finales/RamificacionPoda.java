@@ -1,4 +1,4 @@
-package ejercicios.finales;
+package parcial;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -17,9 +17,9 @@ public class RamificacionPoda {
         int personas, tareas;
         System.out.println("\t EJERCICIO RAMIFICACIÓN Y PODA \t \n\n\n");
 
-        System.out.println("ingrese el cantidad de personas");
+        System.out.println("ingrese la cantidad de personas");
         personas = in.nextInt();
-        System.out.println("ingrese el cantidad de tareas");
+        System.out.println("ingrese la cantidad de tareas");
         tareas = in.nextInt();
 
         this.tabla = new int[personas][tareas];
@@ -27,9 +27,10 @@ public class RamificacionPoda {
         tablero(personas, tareas);
 
         mostrarTablas(this.tabla);
-        int resultado = conviancionOptima(this.tabla, 0, 0, 0, this.tablabanneos);
+        int[] resultado = new int[3];
+        resultado = conviancionOptima(this.tabla, 0, 0, 0);
 
-        System.out.println("\n\n Este es el resultado -> " + resultado);
+        System.out.println("\n\n Este es el resultado -> " + resultado[0]);
         init();
     }
 
@@ -58,35 +59,37 @@ public class RamificacionPoda {
         System.out.println(muestra + "\n");
     }
 
-    public int conviancionOptima(int[][] tableroactual, int persona, int tarea, int totalsumatoria, int[][] tablaBanneos) {
-        int sumatoriaparcial = totalsumatoria + tableroactual[persona][tarea];
-        int siguientepersona = 0;
-        int siguientetarea = 0;
+    public int[] conviancionOptima(int[][] tableroactual, int persona, int tarea, int totalsumatoria) {
+        int[] manejador = new int[3];
+        manejador[0] = totalsumatoria + tableroactual[persona][tarea];// acumulativo actual
+        manejador[1] = persona; //personas
+        manejador[2] = tarea; //tarea
+        //System.out.println("VALOR CON QUE ENTRA "+manejador[0]+" EN PERONSA  "+manejador[1]+" Y TAREA "+manejador[2]);
 
-        // Si existe una persona mas 
+        int[] siguientepersona = new int[3];
+        int[] siguientetarea = new int[3];
+
         if ((persona + 1) < tableroactual.length) {
-                // busque el valor de la siguiente persona 
-                siguientepersona = conviancionOptima(tableroactual, (persona + 1), tarea, totalsumatoria, tablaBanneos);
-        } else {
-            // si no es porque en la persona que esta actualmente es la ultima persona
-            // System.out.println("LLEGO A LA ULTIMA PERSONA -> " + (persona + 1) + " DE LA  TAREA -> " + (tarea + 1) + " CON VALOR -> " + tableroactual[persona][tarea]);
-            // entonces retorne el valor de esta persona
-            return sumatoriaparcial;
-        }
-
-        // si el valor de la siguiente persona es menor que el valor de la persona actual entonces 
-        if (siguientepersona < sumatoriaparcial) {
-            sumatoriaparcial = siguientepersona;
+            siguientepersona = conviancionOptima(tableroactual, (persona + 1), tarea, totalsumatoria);
+            if (siguientepersona[0] < manejador[0]) {
+              //  System.out.println("La siguiente persona ->" + (siguientepersona[1] + 1) + " es menos que la persona actual -> " + (manejador[1] + 1) + " con valor de siguiente persona -> " + siguientepersona[0] + " y persona actual ->" + manejador[0]);
+                manejador[0] = siguientepersona[0];
+                manejador[1] = siguientepersona[1];
+            }
         }
 
         if ((tarea + 1) < tableroactual[0].length) {
-            siguientetarea = conviancionOptima(tableroactual, 0, (tarea + 1), sumatoriaparcial, tablaBanneos);
-        } else {
-            siguientetarea = sumatoriaparcial;
+            siguientetarea = conviancionOptima(tableroactual, 0, (manejador[2] + 1), manejador[0]);
+            System.out.println("Entra con "+manejador[0]+" y sale con "+siguientetarea[0]);
+            if (siguientetarea[2] == manejador[2] && siguientetarea[0] < manejador[0]) {
+                System.out.println("En la tarea ->" + siguientetarea[2] + " la persona -> " + siguientetarea[1] + " tuvo menor valor -> " + siguientetarea[0]);
+                manejador[0] = siguientetarea[0];
+                manejador[1] = siguientetarea[1];
+            } 
         }
-
-        System.out.println("RETORNO -> " + siguientetarea);
-        return siguientetarea;
+        
+        System.out.println("RETORNO -> " + manejador[0]);
+        return manejador;
     }
 
     public boolean averiguarBaneo(int[][] tablaban) {
@@ -99,6 +102,5 @@ public class RamificacionPoda {
         }
         return false;
     }
-
 
 }

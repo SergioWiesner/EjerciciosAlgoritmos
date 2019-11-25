@@ -1,4 +1,4 @@
-package ejercicios.finales;
+package parcial;
 
 import java.util.Random;
 import java.util.Scanner;
