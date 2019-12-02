@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class EjerciosDeAlgoritmos {
 
-    public void menu() {
+    public void menu() throws Exception {
         int opc = 0;
         try{
         System.out.println("\t MENU PRINCIPAL \t \n\n\n");
@@ -49,7 +49,6 @@ public class EjerciosDeAlgoritmos {
             case 6:
               Menu menu = new Menu();
               menu.menu();
-              break; 
             default:
                 break;
         }
@@ -58,7 +57,7 @@ public class EjerciosDeAlgoritmos {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         EjerciosDeAlgoritmos inicio = new EjerciosDeAlgoritmos();
         inicio.menu();
     }
