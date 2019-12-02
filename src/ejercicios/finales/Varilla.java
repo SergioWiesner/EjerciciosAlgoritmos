@@ -8,7 +8,6 @@ public class Varilla {
     public int longitud, corte;
     public int[] tabladeprecios = {1, 5, 8, 9, 10, 17, 17, 24, 30};
     public int[][] memoria;
-    public int globalindice;
     public Scanner in;
 
     public Varilla() {
@@ -19,7 +18,6 @@ public class Varilla {
         System.out.println("\t EJERCICIO DE LA VARILLA \t \n\n\n");
         System.out.println("ingrese el tamaño de la varialla");
         this.longitud = in.nextInt();
-        this.globalindice = 0;
         this.memoria = new int[this.longitud][this.longitud];
         mostrarTablas();
         corteOptimoDinamico();
@@ -37,32 +35,33 @@ public class Varilla {
     public void corteOptimoDinamico() {
 
         for (int a = 0; a < this.memoria.length; a++) { // hacia abajo            
-            for (int b = 0, c = 1; b < this.memoria.length; b++, c++) { //hacia la derecha                
+            for (int b = 0; b < this.memoria.length; b++) { //hacia la derecha                
                 if (a == 0) {
-                    this.memoria[a][b] = (this.tabladeprecios[a] * c);
+                    this.memoria[a][b] = (this.tabladeprecios[a] * (b + 1));
                 } else {
                     int mayor = this.memoria[(a - 1)][b];
-                    int indice = 0; // corre hacia abajo                     
-                    while (indice <= b) {
-                        int prec = 0;
-                        int corte = 0;
+                    int prec = 0;
+                    int longitud = b;
 
-                        for (int d = 0, z = 1; d < b; d++, z++) {
-                            while (corte < b) {                 
-                                if(corte < b){
-                                 prec = prec + this.tabladeprecios[z]; 
-                                }
-                                corte += z;
-                            }
-                            if (mayor < prec) {
-                                mayor = prec;
+                    for (int d = a; d > 0; d--) {
+                        boolean bandera = true;
+                        while (bandera == true) {
+                            if ((longitud - d) >= 0) {
+                                prec += this.tabladeprecios[(d - 1)];
+                                //System.out.println("longitud de " + longitud + " en b = " + b + " y d = " + d + " y precio acumulado " + prec + " precio unitario " + this.tabladeprecios[(d - 1)]);
+                                longitud -= d;
+                            } else {
+                                bandera = false;
                             }
                         }
 
-                        indice++;
+                        if (mayor < prec) {
+                            mayor = prec;
+                            System.out.println("en la posicion a = " + a + " y b = " + b + " va el precio " + mayor);
+                        }
                     }
-
-                    this.memoria[a][b] = mayor;
+                    
+                        this.memoria[a][b] = mayor;                   
                 }
             }
         }
