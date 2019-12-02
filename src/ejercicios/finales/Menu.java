@@ -13,7 +13,8 @@ public class Menu {
         opc = scan.nextInt();
         switch (opc) {
             case 1:
-
+                DivideYVenceras dv = new DivideYVenceras();
+                dv.main();
                 break;
             case 2:
                 Varilla Varilla = new Varilla();
